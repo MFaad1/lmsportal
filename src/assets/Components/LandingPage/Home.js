@@ -1,8 +1,23 @@
-import React from 'react';
-import image from '../Images/educgirl.png';
+import React,{useState} from 'react';
+import image from '../../Images/educgirl.png';
+import AlertPopup from '../Alert/Alert';
+
 
 function Home() {
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleAlert = () => {
+    setShowAlert(true);
+  
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
+  };
+  
   return (
+    <>
+          {showAlert && <AlertPopup message="You have successfully logged in" type="success" onClose={() => setShowAlert(false)} />}
+
     <div className="flex flex-col md:flex-row max-w-1/2 ml-10">
       <div className="md:w-1/2 p-8 flex flex-col justify-center items-center">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -15,7 +30,7 @@ function Home() {
         </p>
 
         <div>
-    <button className='bg-blue-100 p-5'>Browse for Courses</button>
+        <button className='bg-blue-100 p-5' onClick={handleAlert}>Browse for Courses</button>
 
 </div>
       </div>
@@ -25,6 +40,7 @@ function Home() {
 
 
     </div>
+    </>
   
   );
 }

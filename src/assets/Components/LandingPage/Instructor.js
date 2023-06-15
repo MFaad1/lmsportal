@@ -1,5 +1,6 @@
 import React from 'react';
-import image from '../Images/educgirl.png';
+import image from '../../Images/educgirl.png';
+
 
 
 const instructors = [

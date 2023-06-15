@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import AlertPopup from '../Alert/Alert';
 import * as Yup from 'yup';
-import axios from 'axios';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import {NavLink } from 'react-router-dom';
 
-const SignupModule = () => {
-  const navigate = useNavigate();
+
+const Login = () => {
   const initialValues = {
     name: '',
     email: '',
@@ -15,18 +13,13 @@ const SignupModule = () => {
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email address').required('Email is required'),
     password: Yup.string().required('Password is required'),
   });
 
   const handleSubmit = (values) => {
-    axios.post('http://localhost:3200/api/signup',values)
-    .then(resp=>{if(resp.data){
-    <AlertPopup message="You have sucessuflly login" type="success"/>  
-      navigate('/')}
-    })
-    .catch(error=>console.log(error))
+    // Perform signup logic here
+    console.log(values);
   };
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -35,29 +28,15 @@ const SignupModule = () => {
     setShowPassword((prevState) => !prevState);
   };
 
-
-
   return (
     <div className="container flex flex-col h-screen items-center justify-center mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-4">Signup</h2>
+      <h2 className="text-2xl font-bold mb-4">Login</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         <Form className="max-w-md">
-          <div className="mb-4">
-            <label htmlFor="name" className="block mb-2 text-lg">
-              Name
-            </label>
-            <Field
-              type="text"
-              id="name"
-              name="name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            />
-            <ErrorMessage name="name" component="div" className="text-red-500 mt-1" />
-          </div>
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2 text-lg">
               Email
@@ -93,12 +72,14 @@ const SignupModule = () => {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
           >
-            Sign up
+            Login
           </button>
+          <p>Need Account <NavLink to="/signup" className="text-blue-500">Signup Here! </NavLink></p>
         </Form>
       </Formik>
     </div>
   );
 };
 
-export default SignupModule;
+export default Login;
+

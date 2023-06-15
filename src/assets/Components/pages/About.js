@@ -1,8 +1,13 @@
 import React from 'react';
+import Navbar from '../LandingPage/Navbar'
+import Footer from './Footer';
+
 
 const AboutPage = () => {
   return (
-    <div className="container  mx-auto px-4 py-8">
+    <> 
+    <Navbar/>
+       <div className="container  mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">About Path Solution</h1>
       <p className="text-lg mb-6">
         Path Solution is an online education platform that aims to provide high-quality and accessible learning resources to students worldwide. Our mission is to empower individuals to achieve their educational goals and advance their careers through flexible and personalized learning experiences.
@@ -17,6 +22,9 @@ const AboutPage = () => {
         Join Path Solution today and embark on a transformative educational journey. Start learning, expand your horizons, and unlock new opportunities for personal and professional growth.
       </p>
     </div>
+    <Footer/>
+    </>
+
   );
 };
 

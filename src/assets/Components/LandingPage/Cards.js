@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../Images/educgirl.png';
+import image from '../../Images/educgirl.png';
 
 
 const Card = () => {
@@ -10,7 +10,8 @@ const Card = () => {
       <h1 className="text-3xl font-bold border-b-2 inline  border-gray-500">All Courses</h1>
 
     </div>
-      <div className="flex flex-wrap  mx-4">
+      <div className="flex flex-wrap mx-4">
+
         <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-10">
           <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
             <img className="h-48 w-full object-cover" src={image} alt="React Course" />
