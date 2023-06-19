@@ -1,5 +1,9 @@
 import React from 'react';
-import image from '../../Images/educgirl.png';
+import image from '../../Images/profile3.jpg';
+import image1 from '../../Images/profile5jpg.jpg'
+import image2 from '../../Images/profil2.jpg'
+
+
 
 
 
@@ -18,7 +22,7 @@ const instructors = [
     expertise: 'Graphic Design',
     bio:
       'Jane Smith is a talented graphic designer with a keen eye for aesthetics. She has worked on numerous branding and illustration projects, and enjoys teaching aspiring designers the art of visual communication.',
-    image: [image],
+    image: [image1],
   },
   {
     id: 3,
@@ -26,7 +30,7 @@ const instructors = [
     expertise: 'Graphic Design',
     bio:
       'Jane Smith is a talented graphic designer with a keen eye for aesthetics. She has worked on numerous branding and illustration projects, and enjoys teaching aspiring designers the art of visual communication.',
-    image: [image],
+    image: [image2],
   },
   // Add more instructors here
 ];

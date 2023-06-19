@@ -8,10 +8,6 @@ function Home() {
 
   const handleAlert = () => {
     setShowAlert(true);
-  
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 2000);
   };
   
   return (
