@@ -13,6 +13,24 @@ const faqData = [
     answer:
       'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris sed purus vel lorem consequat varius. Etiam a lacus a diam interdum rhoncus.',
   },
+  {
+    id: 3,
+    question: 'How can I access my course materials?',
+    answer:
+      'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris sed purus vel lorem consequat varius. Etiam a lacus a diam interdum rhoncus.',
+  },
+  {
+    id: 4,
+    question: 'How can I access my course materials?',
+    answer:
+      'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris sed purus vel lorem consequat varius. Etiam a lacus a diam interdum rhoncus.',
+  },
+  {
+    id: 5,
+    question: 'How can I access my course materials?',
+    answer:
+      'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris sed purus vel lorem consequat varius. Etiam a lacus a diam interdum rhoncus.',
+  },
   // Add more FAQ items here
 ];
 

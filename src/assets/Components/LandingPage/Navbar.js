@@ -1,5 +1,6 @@
 import React from 'react';
-import {NavLink } from 'react-router-dom';
+import {NavLink,useLocation  } from 'react-router-dom';
+
 
   const links = [
     {
@@ -33,38 +34,37 @@ import {NavLink } from 'react-router-dom';
       to: "/contact"
     },
     {
-      id: 8,
-      link: 'Exame',
-      to: "/exms"
-    },
-    {
-      id: 9,
-      link: 'Q/A',
-      to: "/qa"
-    },
-    {
       id: 7,
-      link: 'Login',
+      link: 'login',
       to: "/login"
     },
   ];
 const Navbar = () => {
+  const location = useLocation();
+  const currentUrl = location.pathname;
+
   return (
     <nav className="bg-blue-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <h1 className="text-white text-3xl">EASY EDUCATION</h1>
-          <ul className="hidden md:flex space-x-4 text-white">
-
-          {links.map(({id,link, to})=>{
-          return  <li key={id} className="text-lg font-medium">
-          <NavLink to={to} activeClassName="text-gray-300">{link}</NavLink>
-          </li>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between items-center h-20">
+        <h1 className="text-white text-3xl">PATH SOLUTION</h1>
+        <ul className="hidden md:flex space-x-4 text-white">
+          {links.map(({ id, link, to }) => {
+            return (
+              <li key={id} className="text-lg font-medium">
+                <NavLink
+                  to={currentUrl === '/login' && to === '/login' ? '/signup' : to}
+                  activeClassName="text-gray-300"
+                >
+                  {currentUrl === '/login' && link === 'login' ? 'Signup' : link}
+                </NavLink>
+              </li>
+            );
           })}
-          </ul>
-        </div>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
   );
 };
 

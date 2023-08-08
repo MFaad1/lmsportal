@@ -23,6 +23,27 @@ function Testimonial() {
             testimonial:
               'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce lobortis lacinia diam, ac lacinia nunc congue vitae.',
           },
+          {
+            id: 4,
+            name: 'Jane Smith',
+            title: 'Graphic Designer',
+            testimonial:
+              'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce lobortis lacinia diam, ac lacinia nunc congue vitae.',
+          },
+          {
+            id: 5,
+            name: 'Jane Smith',
+            title: 'Graphic Designer',
+            testimonial:
+              'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce lobortis lacinia diam, ac lacinia nunc congue vitae.',
+          },
+          {
+            id: 6,
+            name: 'Jane Smith',
+            title: 'Graphic Designer',
+            testimonial:
+              'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce lobortis lacinia diam, ac lacinia nunc congue vitae.',
+          },
         // Add more testimonials here
       ];
   return (

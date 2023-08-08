@@ -8,6 +8,7 @@ import Login from './assets/Components/pages/Loging';
 import ServicePage from './assets/Components/pages/Services';
 import SignupModule from './assets/Components/pages/Signup';
 import CoursePage from './assets/Components/pages/Course';
+import ForgetPassword from './assets/Components/pages/ForgetPassword';
 
 
 
@@ -23,7 +24,7 @@ function App() {
     <>
      <Routes>
       <Route path='/' exact  element={<Landingpage/>} />
-      <Route path='login' exact element={<Login/>} />
+      <Route path='Login' exact element={<Login/>} />
       <Route path='signup' exact element={<SignupModule/>} />
       <Route path='about' exact element={ <AboutPage/>} />
       <Route path='services' exact element={<ServicePage/>} />
@@ -32,9 +33,8 @@ function App() {
       <Route path="QA" exact element={<Qa/>} />
       <Route path="exms" exact element={<Exam/>} />
       <Route path="Courses" exact element={<CoursePage/>} />
-      <Route path="rooter" exact element={<Footer/>} />
-
-
+      <Route path="foter" exact element={<Footer/>} />
+      <Route path="ForgetPassword" exact element={<ForgetPassword/>} />
   </Routes>
 
   {/* <Carousel/> */}
