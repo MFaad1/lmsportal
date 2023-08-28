@@ -9,6 +9,7 @@ import ServicePage from './assets/Components/pages/Services';
 import SignupModule from './assets/Components/pages/Signup';
 import CoursePage from './assets/Components/pages/Course';
 import ForgetPassword from './assets/Components/pages/ForgetPassword';
+import PasswordReset from './assets/Components/pages/PasswordReset';
 
 
 
@@ -35,6 +36,7 @@ function App() {
       <Route path="Courses" exact element={<CoursePage/>} />
       <Route path="foter" exact element={<Footer/>} />
       <Route path="ForgetPassword" exact element={<ForgetPassword/>} />
+      <Route path="PasswordReset" exact element={<PasswordReset/>} />
   </Routes>
 
   {/* <Carousel/> */}

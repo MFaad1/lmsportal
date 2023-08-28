@@ -10,6 +10,8 @@ import AlertPopup from '../Alert/Alert';
 
 const Login = () => {
   const [showAlert, setShowAlert] = useState(false);
+  const [showAlertmsg, setshowAlertmsg] = useState(false);
+
 
   const initialValues = {
     email: '',
@@ -27,12 +29,20 @@ const Login = () => {
     axios
       .post('http://localhost:3200/api/login', values)
       .then((response) => {
+        localStorage.setItem('token', response.data.token);
         setShowAlert(true);
         setTimeout(() => {
           navigate('/');
         }, 1000);
       })
-      .catch((err) => console.log(err.message, 'error returned'));
+      .catch((err) =>
+      {
+        setShowAlert(true);    
+        setshowAlertmsg(true)    
+        console.log(err.message, 'error returned')
+
+      });
+      
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -45,7 +55,7 @@ const Login = () => {
     <>
       <Navbar />
 
-      {showAlert && <AlertPopup message="You have successfully logged in" type="success" onClose={() => setShowAlert(false)} />}
+      {showAlert && <AlertPopup message= {showAlertmsg ? "User Not found": "You have successfully logged in"} type= {showAlertmsg ? "error": "success"} onClose={() => setShowAlert(false)} />}
 
     
 <div className="flex items-center justify-center min-h-[72vh]  bg-gray-100">
