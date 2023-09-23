@@ -6,10 +6,14 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import AlertPopup from '../Alert/Alert';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Navbar from '../LandingPage/Navbar';
+import Footer from './Footer';
 
 const SignupModule = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState(null);
+  const [showAlertmsg, setshowAlertmsg] = useState(false);
+
 
   const navigate = useNavigate();
   const initialValues = {
@@ -35,8 +39,11 @@ const SignupModule = () => {
           }, 1000);
         }
       })
-      .catch((error) => setMessage(error.message));
-  };
+      .catch((error) => {
+        setMessage(error.message);
+        setShowAlert(true);    
+        setshowAlertmsg(true)
+    } )   };
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -45,16 +52,13 @@ const SignupModule = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="border border-gray-300 rounded-md shadow-sm p-6 bg-white w-96">
+    <>
+      {showAlert && <AlertPopup message= {showAlertmsg ? message : 'Error occured'} type= {showAlertmsg ? "error": "success"} onClose={() => setShowAlert(false)} />}
+
+    <Navbar/>
+    <div className="flex items-center justify-center min-h-[72vh] bg-gray-100">
+      <div className="border border-gray-300 rounded-md shadow-sm p-6 bg-white w-[36%]">
         <h2 className="text-2xl font-bold mb-4 text-center">SIGN UP</h2>
-        {showAlert && (
-          <AlertPopup
-            message="You have successfully signed up"
-            type="success"
-            onClose={() => setShowAlert(false)}
-          />
-        )}
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           <Form>
             <div className="mb-4">
@@ -113,6 +117,9 @@ const SignupModule = () => {
               </NavLink>
       </div>
     </div>
+    <Footer/>
+
+    </>
   );
 };
 

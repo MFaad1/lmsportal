@@ -35,13 +35,15 @@ import {NavLink,useLocation  } from 'react-router-dom';
     },
     {
       id: 7,
-      link: 'login',
+      link: 'Login',
       to: "/login"
     },
   ];
 const Navbar = () => {
   const location = useLocation();
   const currentUrl = location.pathname;
+  let token = localStorage.getItem('token')
+  console.log(token, "Token")
 
   return (
     <nav className="bg-blue-800">
@@ -51,12 +53,14 @@ const Navbar = () => {
         <ul className="hidden md:flex space-x-4 text-white">
           {links.map(({ id, link, to }) => {
             return (
+  
               <li key={id} className="text-lg font-medium">
+              
                 <NavLink
                   to={currentUrl === '/login' && to === '/login' ? '/signup' : to}
                   activeClassName="text-gray-300"
                 >
-                  {currentUrl === '/login' && link === 'login' ? 'Signup' : link}
+                  {currentUrl === '/login' && link === 'Login' ? 'Sign up' : link}
                 </NavLink>
               </li>
             );

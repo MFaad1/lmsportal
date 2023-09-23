@@ -35,14 +35,13 @@ const Login = () => {
           navigate('/');
         }, 1000);
       })
-      .catch((err) =>
-      {
-        setShowAlert(true);    
-        setshowAlertmsg(true)    
+      .catch((err) => {
+        setShowAlert(true);
+        setshowAlertmsg(true)
         console.log(err.message, 'error returned')
 
       });
-      
+
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -55,10 +54,10 @@ const Login = () => {
     <>
       <Navbar />
 
-      {showAlert && <AlertPopup message= {showAlertmsg ? "User Not found": "You have successfully logged in"} type= {showAlertmsg ? "error": "success"} onClose={() => setShowAlert(false)} />}
+      {showAlert && <AlertPopup message={showAlertmsg ? "User Not found" : "You have successfully logged in"} type={showAlertmsg ? "error" : "success"} onClose={() => setShowAlert(false)} />}
 
-    
-<div className="flex items-center justify-center min-h-[72vh]  bg-gray-100">
+
+      <div className="flex items-center justify-center min-h-[72vh]  bg-gray-100">
         <div className="bg-white rounded-md shadow-md p-5 w-[36%]">
           <h2 className="text-2xl font-bold mb-4 flex items-center justify-center">Login</h2>
           <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
@@ -102,17 +101,17 @@ const Login = () => {
 
               </button>
               <div className="flex justify-between mt-4">
-            <NavLink to="/signup" className="text-blue-500">
-              Don't have an Account?
-            </NavLink>
-            <NavLink to="/ForgetPassword" className="text-blue-500">
-              Forget Password
-            </NavLink>
-          </div>
-  
+                <NavLink to="/signup" className="text-blue-500">
+                  Don't have an Account?
+                </NavLink>
+                <NavLink to="/ForgetPassword" className="text-blue-500">
+                  Forget Password
+                </NavLink>
+              </div>
+
             </Form>
           </Formik>
-          
+
         </div>
       </div>
 
