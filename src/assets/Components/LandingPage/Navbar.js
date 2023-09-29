@@ -43,7 +43,7 @@ const Navbar = () => {
   const location = useLocation();
   const currentUrl = location.pathname;
   let token = localStorage.getItem('token')
-  console.log(token, "Token")
+  // console.log(token, "Token")
 
   return (
     <nav className="bg-blue-800">
@@ -55,13 +55,16 @@ const Navbar = () => {
             return (
   
               <li key={id} className="text-lg font-medium">
-              
+                {
+                 token && link == "Login" ? "" :
                 <NavLink
                   to={currentUrl === '/login' && to === '/login' ? '/signup' : to}
                   activeClassName="text-gray-300"
                 >
                   {currentUrl === '/login' && link === 'Login' ? 'Sign up' : link}
                 </NavLink>
+                }
+              
               </li>
             );
           })}
