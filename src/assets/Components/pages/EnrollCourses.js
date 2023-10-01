@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../LandingPage/Navbar';
 import Footer from './Footer';
+import {useUserContext} from '../user Details/UserProvider';
 import image from '../../Images/react.png';
 import image1 from '../../Images/py.png';
 import image2 from '../../Images/js.jpeg';
@@ -10,51 +11,45 @@ import chemistery from '../../Images/Chemistry.jpeg';
 import Mathematics from '../../Images/match.png';
 import axios from 'axios';
 import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from 'react-router-dom';
-import {useUserContext} from '../user Details/UserProvider';
 
-const CoursePage = () => {
-  let token = localStorage.getItem('token');
+
+function EnrollCourses() {
   const {userData} = useUserContext();
-  const {setUserData} = useUserContext();
-
   const navigate = useNavigate();
-  const [course, setCourse] = useState([]);
+  let token = localStorage.getItem('token');
+  const { setUserData } = useUserContext();
 
-  const getCourseFunct = async () => {
-    try {
-      let response = await axios.get('http://localhost:3200/api/getCourses');
-      setCourse(response.data?.course);
-    } catch (error) {
-      console.log(error, 'error occured');
-    }
-  };
+if(!token ){
+  navigate('/login')
+}
 
-  const userDetailsFunction = async () => {
-    try {
-      let response = await axios.get('http://localhost:3200/api/userDetails', {
-        headers: {
-          token: token,
-        },
-      });
-      const data = response.data;
-      setUserData(data);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    getCourseFunct();
-    userDetailsFunction();
-  }, []);
-
-  const coursesByCategory = {};
-  course.forEach(course => {
+const coursesByCategory = {};
+  userData && userData.CoursesArray.length > 0 &&  userData.CoursesArray.forEach(course => {
     const category = course.category;
     if (!coursesByCategory[category]) {
       coursesByCategory[category] = [];
     }
     coursesByCategory[category].push(course);
   });
+
+  const userDetailsFunction =async()=>{
+    try {
+      let response = await axios.get("http://localhost:3200/api/userDetails",{
+        headers: {
+          token: token
+        }
+      })
+      const data  = response.data
+      setUserData(data);
+    } catch (error) {
+    }
+    
+    }
+useEffect(()=>{
+  userDetailsFunction()
+},[])
+
 
   const enrollHandler = async id => {
     try {
@@ -65,7 +60,7 @@ const CoursePage = () => {
         }, 1000);
       } else {
         let response = await axios.post(
-          'http://localhost:3200/api/EnrollCourse',
+          'http://localhost:3200/api/delcoursesHander',
           {id},
           {
             headers: {
@@ -74,9 +69,10 @@ const CoursePage = () => {
           },
         );
         if (response.status == 200) {
-          userDetailsFunction();
-          toast.success('Enrollment successful!');
+          toast.success('Course has been Deleted!');
+          userDetailsFunction()
         } else {
+          userDetailsFunction()
           toast.error('Enrollment failed!');
         }
       }
@@ -84,28 +80,19 @@ const CoursePage = () => {
       toast.error(error.message);
     }
   };
-
   return (
     <>
       <Navbar />
-      {Object.keys(coursesByCategory).map((category, index) => (
-        <div className="bg-gray-100 py-8">
+      { Object.keys(coursesByCategory).length > 0 ?
+      Object.keys(coursesByCategory).map((category, index) => (
+        <div className="bg-gray-100 py-8 ">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-extrabold text-gray-900 border-b-2 inline  border-gray-500">
               {category}
             </h2>
             <div className="mt-6 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+             
               {coursesByCategory[category].map((course, index) => {
-                let isEnrolled = false;
-
-                if (userData && userData.CoursesArray.length > 0 && token) {
-                  isEnrolled = userData.CoursesArray.some(
-                    enrolledCourse => enrolledCourse.title === course.title,
-                  );
-                } else {
-                  isEnrolled = false;
-                }
-
                 return (
                   <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md">
                     <img
@@ -128,15 +115,11 @@ const CoursePage = () => {
 
                       <p className="text-base text-gray-700">{course?.description}</p>
                     </div>
-                    <div
-                      className={`flex items-end  justify-center ${
-                        isEnrolled ? 'bg-gray-500' : 'bg-blue-500'
-                      } w-full`}>
+                    <div className="flex items-end  justify-center bg-blue-500 w-full">
                       <button
-                        className={`text-white font-bold  px-4 py-2 rounded`}
-                        onClick={() => enrollHandler(course._id)}
-                        disabled={isEnrolled}>
-                        {isEnrolled ? 'Already Enrolled' : 'Enroll'}
+                        className="text-white font-bold  px-4 py-2 rounded"
+                        onClick={() => enrollHandler(course._id)}>
+                        Delete
                       </button>
                     </div>
                   </div>
@@ -145,10 +128,11 @@ const CoursePage = () => {
             </div>
           </div>
         </div>
-      ))}
+      )) : <div className='h-96 flex justify-center align-center'> No Cours Enroll</div>
+    }
       <Footer />
     </>
   );
-};
+}
 
-export default CoursePage;
+export default EnrollCourses;

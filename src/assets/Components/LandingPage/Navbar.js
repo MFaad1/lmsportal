@@ -1,6 +1,7 @@
 import React from 'react';
-import {NavLink,useLocation  } from 'react-router-dom';
-
+import {NavLink,Router,useLocation,useNavigate  } from 'react-router-dom';
+import { AiFillCaretDown } from "react-icons/ai";
+import style from '../../../Style/style.css'
 
   const links = [
     {
@@ -39,11 +40,28 @@ import {NavLink,useLocation  } from 'react-router-dom';
       to: "/login"
     },
   ];
+
 const Navbar = () => {
   const location = useLocation();
   const currentUrl = location.pathname;
   let token = localStorage.getItem('token')
-  // console.log(token, "Token")
+  const navigate = useNavigate();
+
+
+  let navDatea = [
+    {
+    title : "Enroll",
+
+  },
+  {
+    title : "logout",
+  },
+]
+
+const HandleLogout =()=>{
+  localStorage.removeItem("token");
+  navigate('/Signup')
+}
 
   return (
     <nav className="bg-blue-800">
@@ -56,7 +74,16 @@ const Navbar = () => {
   
               <li key={id} className="text-lg font-medium">
                 {
-                 token && link == "Login" ? "" :
+                 token && link == "Login" ? <div>
+                  <div className = "Navbar">
+                    <div className='navBarItem'> <p>Profile</p>  <AiFillCaretDown/> </div>
+                  <div className='NavData'>
+                    {navDatea.map((item)=>{
+                   return  <div className='navItem' onClick={item.title == "logout"? HandleLogout : ()=>navigate("/EnrollCourses")}>{item.title}</div>
+                  } )} 
+                  </div>
+                  </div>
+                 </div> :
                 <NavLink
                   to={currentUrl === '/login' && to === '/login' ? '/signup' : to}
                   activeClassName="text-gray-300"

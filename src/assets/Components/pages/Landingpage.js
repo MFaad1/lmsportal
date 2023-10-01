@@ -12,14 +12,38 @@ import Home from '../LandingPage/Home';
 import FAQ from '../LandingPage/Faqs';
 import PricingPlans from '../LandingPage/Plan';
 import Footer from './Footer';
+import axios from 'axios';
+import { useUserContext } from '../user Details/UserProvider';
+
+
+
 
 export default function Landingpage() {
+  let token = localStorage.getItem("token")
+  const { setUserData } = useUserContext();
+
+const userDetailsFunction =async()=>{
+try {
+  let response = await axios.get("http://localhost:3200/api/userDetails",{
+    headers: {
+      token: token
+    }
+  })
+  const data  = response.data
+  setUserData(data);
+} catch (error) {
+}
+
+
+}
+
   useEffect(() => {
+    userDetailsFunction()
     AOS.init({
       duration: 800,
       once:true
     });
-  }, []);
+  }, [setUserData]);
 
   return (
     <div>

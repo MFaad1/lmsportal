@@ -1,0 +1,29 @@
+
+.Navbar{
+  position: relative;
+}
+.navBarItem{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.NavData{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: absolute;
+  border-radius: 5px;
+}
+
+.Navbar:hover{
+  cursor: pointer;
+  .NavData{
+    display: block;
+  }
+}
+
+.navItem{
+  padding: 7px 30px 5px 20px;
+  background-color: rgb(30 64 175 );
+}

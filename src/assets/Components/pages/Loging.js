@@ -7,10 +7,12 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AlertPopup from '../Alert/Alert';
+import { useUserContext } from '../user Details/UserProvider';
 
 const Login = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertmsg, setshowAlertmsg] = useState(false);
+  const { setUserData } = useUserContext();
 
 
   const initialValues = {
@@ -30,6 +32,9 @@ const Login = () => {
       .post('http://localhost:3200/api/login', values)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
+        const userData  = response.data
+        setUserData(userData);
+        
         setShowAlert(true);
         setTimeout(() => {
           navigate('/');
