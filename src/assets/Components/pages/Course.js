@@ -31,6 +31,7 @@ const CoursePage = () => {
       console.log(error, 'error occured');
     }
   };
+  
   // console.log(process.env.process.env.REACT_APP_BASEURL, 'url')
 
   const userDetailsFunction = async () => {
