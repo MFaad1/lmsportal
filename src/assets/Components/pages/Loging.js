@@ -29,7 +29,7 @@ const Login = () => {
 
   const handleSubmit = (values) => {
     axios
-      .post('http://localhost:3200/api/login', values)
+      .post('https://lmsportal-be.vercel.app/api/login', values)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         const userData  = response.data

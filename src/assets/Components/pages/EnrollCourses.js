@@ -35,7 +35,7 @@ const coursesByCategory = {};
 
   const userDetailsFunction =async()=>{
     try {
-      let response = await axios.get("http://localhost:3200/api/userDetails",{
+      let response = await axios.get(`${process.env.REACT_APP_BASEURL}/api/userDetails`,{
         headers: {
           token: token
         }
@@ -60,7 +60,7 @@ useEffect(()=>{
         }, 1000);
       } else {
         let response = await axios.post(
-          'http://localhost:3200/api/delcoursesHander',
+          `${process.env.REACT_APP_BASEURL}/api/delcoursesHander`,
           {id},
           {
             headers: {

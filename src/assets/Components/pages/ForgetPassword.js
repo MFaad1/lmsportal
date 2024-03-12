@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from "axios"
-import AlertPopup from '../Alert/Alert';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -23,7 +23,7 @@ const ForgetPassword =() => {
   const handleSubmit =async(values) => {
     let token = localStorage.getItem("token");
     try {
-      let response = await axios.post("http://localhost:3200/api/emailVarify", {email:values.email}
+      let response = await axios.post(`${process.env.REACT_APP_BASEURL}/api/emailVarify`, {email:values.email}
       ) 
       if(response.status ==200){
         navigate('/PasswordReset')

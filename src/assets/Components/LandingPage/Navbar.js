@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink,Router,useLocation,useNavigate  } from 'react-router-dom';
+import {NavLink,useLocation,useNavigate  } from 'react-router-dom';
 import { AiFillCaretDown } from "react-icons/ai";
 import style from '../../../Style/style.css'
 
@@ -71,15 +71,14 @@ const HandleLogout =()=>{
         <ul className="hidden md:flex space-x-4 text-white">
           {links.map(({ id, link, to }) => {
             return (
-  
               <li key={id} className="text-lg font-medium">
                 {
-                 token && link == "Login" ? <div>
+                 token && link === "Login" ? <div>
                   <div className = "Navbar">
                     <div className='navBarItem'> <p>Profile</p>  <AiFillCaretDown/> </div>
                   <div className='NavData'>
                     {navDatea.map((item)=>{
-                   return  <div className='navItem' onClick={item.title == "logout"? HandleLogout : ()=>navigate("/EnrollCourses")}>{item.title}</div>
+                   return  <div className='navItem' onClick={item.title === "logout"? HandleLogout : ()=>navigate("/EnrollCourses")}>{item.title}</div>
                   } )} 
                   </div>
                   </div>

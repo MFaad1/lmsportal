@@ -30,7 +30,7 @@ const SignupModule = () => {
 
   const handleSubmit = (values) => {
     axios
-      .post('http://localhost:3200/api/signup', values)
+      .post(`${process.env.REACT_APP_BASEURL}/api/signup`, values)
       .then((resp) => {
         setShowAlert(true);
         if (resp.data) {

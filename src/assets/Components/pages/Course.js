@@ -24,16 +24,18 @@ const CoursePage = () => {
 
   const getCourseFunct = async () => {
     try {
-      let response = await axios.get('http://localhost:3200/api/getCourses');
+      let response = await axios.get(`${process.env.REACT_APP_BASEURL}/api/getCourses`);
       setCourse(response.data?.course);
+        console.log(response, "response")
     } catch (error) {
       console.log(error, 'error occured');
     }
   };
+  // console.log(process.env.process.env.REACT_APP_BASEURL, 'url')
 
   const userDetailsFunction = async () => {
     try {
-      let response = await axios.get('http://localhost:3200/api/userDetails', {
+      let response = await axios.get(`${process.env.REACT_APP_BASEURL}/api/userDetails`, {
         headers: {
           token: token,
         },
@@ -65,7 +67,7 @@ const CoursePage = () => {
         }, 1000);
       } else {
         let response = await axios.post(
-          'http://localhost:3200/api/EnrollCourse',
+          `${process.env.REACT_APP_BASEURL}/api/EnrollCourse`,
           {id},
           {
             headers: {
@@ -85,11 +87,12 @@ const CoursePage = () => {
     }
   };
 
+
   return (
     <>
       <Navbar />
       {Object.keys(coursesByCategory).map((category, index) => (
-        <div className="bg-gray-100 py-8">
+        <div className="bg-gray-100 py-8" key={index}>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-extrabold text-gray-900 border-b-2 inline  border-gray-500">
               {category}

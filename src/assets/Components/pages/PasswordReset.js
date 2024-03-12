@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import AlertPopup from '../Alert/Alert';
 
 const PasswordReset= () => {
   const initialValues = {
@@ -26,7 +25,7 @@ const PasswordReset= () => {
   const handleSubmit = async(values) => {
     let token = localStorage.getItem("token");
   try{
-      let response = await axios.post("http://localhost:3200/api/passwordReset", {email:values.email},
+      let response = await axios.post(`${process.env.REACT_APP_BASEURL}/api/passwordReset`, {email:values.email},
       {
         headers: {
           'token':token,

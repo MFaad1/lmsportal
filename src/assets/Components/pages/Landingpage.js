@@ -24,7 +24,7 @@ export default function Landingpage() {
 
 const userDetailsFunction =async()=>{
 try {
-  let response = await axios.get("http://localhost:3200/api/userDetails",{
+  let response = await axios.get(`${process.env.REACT_APP_BASEURL}/api/userDetails`,{
     headers: {
       token: token
     }
